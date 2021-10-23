@@ -12,6 +12,8 @@ jobs:
           npm i
           npm run build-site
           cd ..
+          echo 'ls ./TiddlyWiki:'
+          ls ./TiddlyWiki
       # this is to be fixed:
       - uses: actions/checkout@v2
       - name: move and commit resulting file
