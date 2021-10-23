@@ -25,3 +25,4 @@ jobs:
           git config --global user.email ${{ github.event.pusher.email }}
           git add ./index.html
           git commit -m "autoupdate index"
+          git push
