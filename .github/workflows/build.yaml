@@ -1,11 +1,9 @@
-on: pull_request
+on: push
 
 jobs:
   build-site:
     runs-on: ubuntu-latest
-    # here experiments come:
     steps:
-      # may use cache, but this needs adapted flow
       - name: get TiddlyWiki source
         run: git clone https://github.com/TiddlyWiki/TiddlyWiki.git
       - name: install and build
@@ -14,7 +12,9 @@ jobs:
           npm i
           npm run build-site
           cd ..
+      # this is to be fixed:
       - name: move and commit resulting file
+        uses: actions/checkout@v2
         # get the "build/cooked/2.9.2" path bit from core repo itself
         # mv ./TiddlyWiki/build/cooked/2.9.2/index.html ./
         # enrich commit message with event/source commit
