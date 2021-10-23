@@ -4,6 +4,7 @@ jobs:
   build-site:
     runs-on: ubuntu-latest
     steps:
+      # should be run first since it makes files created in cwd before not accessible
       - uses: actions/checkout@v2
       - name: get TiddlyWiki source
         run: git clone https://github.com/TiddlyWiki/TiddlyWiki.git
@@ -13,16 +14,14 @@ jobs:
           npm i
           npm run build-site
           cd ..
-          echo 'ls:'
-          ls
       # this is to be fixed:
       - name: move and commit resulting file
         # get the "build/cooked/2.9.2" path bit from core repo itself
         # mv ./TiddlyWiki/build/cooked/2.9.2/index.html ./
         # enrich commit message with event/source commit
         run: |
-          echo 'ls:'
-          ls
           mv ./TiddlyWiki/build/cooked/*/index.html ./
+          git config --global user.name ${{ github.event.pusher.name }}
+          git config --global user.email ${{ github.event.pusher.email }}
           git add ./index.html
           git commit -m "autoupdate index"
