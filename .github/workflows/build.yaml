@@ -19,6 +19,10 @@ jobs:
         # mv ./TiddlyWiki/build/cooked/2.9.2/index.html ./
         # enrich commit message with event/source commit
         run: |
-          mv ./TiddlyWiki/build/cooked/2.9.2/index.html ./
+          echo 'ls:'
+          ls
+          echo 'ls ./TiddlyWiki:'
+          ls ./TiddlyWiki
+          mv ./TiddlyWiki/build/cooked/*/index.html ./
           git add ./index.html
           git commit -m "autoupdate index"
