@@ -15,8 +15,6 @@ jobs:
           cd ..
           echo 'ls:'
           ls
-          echo 'ls ./TiddlyWiki:'
-          ls ./TiddlyWiki
       # this is to be fixed:
       - name: move and commit resulting file
         # get the "build/cooked/2.9.2" path bit from core repo itself
@@ -25,8 +23,6 @@ jobs:
         run: |
           echo 'ls:'
           ls
-          echo 'ls ./TiddlyWiki:'
-          ls ./TiddlyWiki
           mv ./TiddlyWiki/build/cooked/*/index.html ./
           git add ./index.html
           git commit -m "autoupdate index"
