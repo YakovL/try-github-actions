@@ -13,8 +13,8 @@ jobs:
           npm run build-site
           cd ..
       # this is to be fixed:
+      - uses: actions/checkout@v2
       - name: move and commit resulting file
-        uses: actions/checkout@v2
         # get the "build/cooked/2.9.2" path bit from core repo itself
         # mv ./TiddlyWiki/build/cooked/2.9.2/index.html ./
         # enrich commit message with event/source commit
