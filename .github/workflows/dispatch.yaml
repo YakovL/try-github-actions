@@ -1,0 +1,8 @@
+on: repository_dispatch
+
+jobs:
+  explore-dispatch:
+    steps:
+      - run: |
+          echo 'repository_dispatch event is triggered'
+          echo ${{ github.event.inputs }}
