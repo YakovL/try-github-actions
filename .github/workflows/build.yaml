@@ -4,6 +4,7 @@ jobs:
   build-site:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: get TiddlyWiki source
         run: git clone https://github.com/TiddlyWiki/TiddlyWiki.git
       - name: install and build
@@ -17,7 +18,6 @@ jobs:
           echo 'ls ./TiddlyWiki:'
           ls ./TiddlyWiki
       # this is to be fixed:
-      - uses: actions/checkout@v2
       - name: move and commit resulting file
         # get the "build/cooked/2.9.2" path bit from core repo itself
         # mv ./TiddlyWiki/build/cooked/2.9.2/index.html ./
