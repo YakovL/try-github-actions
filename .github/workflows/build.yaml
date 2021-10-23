@@ -1,0 +1,24 @@
+on: pull_request
+
+jobs:
+  build-site:
+    runs-on: ubuntu-latest
+    # here experiments come:
+    steps:
+      # may use cache, but this needs adapted flow
+      - name: get TiddlyWiki source
+        run: git clone https://github.com/TiddlyWiki/TiddlyWiki.git
+      - name: install and build
+        run: |
+          cd ./TiddlyWiki
+          npm i
+          npm run build-site
+          cd ..
+      - name: move and commit resulting file
+        # get the "build/cooked/2.9.2" path bit from core repo itself
+        # mv ./TiddlyWiki/build/cooked/2.9.2/index.html ./
+        # enrich commit message with event/source commit
+        run: |
+          mv ./TiddlyWiki/build/cooked/*/index.html ./
+          git add ./index.html
+          git commit -m "autoupdate index"
