@@ -1,7 +1,15 @@
 name: rebuild index.html from sources repo
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      userName:
+        description: "Username for commit"
+        required: true
+        default: "YakovL"
+      userMail:
+        description: "User email for commit"
+        required: true
 
 jobs:
   build-site:
@@ -17,18 +25,14 @@ jobs:
           npm i
           npm run build-site
           cd ..
-      - name: debug
-        run: |
-          echo 'github.event'
-          echo ${{ github.event }}
       - name: move and commit resulting file
         # get the "build/cooked/2.9.2" path bit from core repo itself
         # mv ./TiddlyWiki/build/cooked/2.9.2/index.html ./
         # enrich commit message with event/source commit
         run: |
           mv ./TiddlyWiki/build/cooked/*/index.html ./
-          git config --global user.name ${{ github.event.pusher.name }}
-          git config --global user.email ${{ github.event.pusher.email }}
+          git config --global user.name ${{ github.event.inputs.name }}
+          git config --global user.email ${{ github.event.inputs.email }}
           git add ./index.html
           git commit -m "autoupdate index.html"
           git push
