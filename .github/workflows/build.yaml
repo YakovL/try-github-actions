@@ -1,4 +1,7 @@
-#on: push
+name: rebuild index.html from sources repo
+
+on:
+  workflow_dispatch
 
 jobs:
   build-site:
@@ -14,7 +17,6 @@ jobs:
           npm i
           npm run build-site
           cd ..
-      # this is to be fixed:
       - name: move and commit resulting file
         # get the "build/cooked/2.9.2" path bit from core repo itself
         # mv ./TiddlyWiki/build/cooked/2.9.2/index.html ./
