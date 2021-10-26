@@ -14,13 +14,12 @@ on:
       email:
         description: "User email for commit"
         required: true
-        default: "yakov.litvin.publicly@gmail.com"
+        default: ${{ secrets.DEFAULT_COMMITTER_EMAIL }}
 
 jobs:
   build-site:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ secrets.DEFAULT_COMMITTER_EMAIL }}
       # should be run first since it makes files created in cwd before not accessible
       - uses: actions/checkout@v2
       - name: get TiddlyWiki source
