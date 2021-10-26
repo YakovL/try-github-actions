@@ -3,6 +3,10 @@ name: rebuild index.html from sources repo
 on:
   workflow_dispatch:
     inputs:
+      commitMessage:
+        description: "Commit message"
+        required: true
+        default: "autoupdate index.html"
       name:
         description: "Username for commit"
         required: true
@@ -10,6 +14,7 @@ on:
       email:
         description: "User email for commit"
         required: true
+        default: "yakov.litvin.publicly@gmail.com"
 
 jobs:
   build-site:
@@ -34,5 +39,5 @@ jobs:
           git config --global user.name ${{ github.event.inputs.name }}
           git config --global user.email ${{ github.event.inputs.email }}
           git add ./index.html
-          git commit -m "autoupdate index.html"
+          git commit -m "${{ github.event.inputs.commitMessage }}"
           git push
