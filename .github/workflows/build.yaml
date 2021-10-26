@@ -14,7 +14,7 @@ on:
       email:
         description: "User email for commit"
         required: true
-        default: ${{ secrets.DEFAULT_COMMITTER_EMAIL }}
+        default: "yakov.litvin.publicly@gmail.com"
 
 jobs:
   build-site:
