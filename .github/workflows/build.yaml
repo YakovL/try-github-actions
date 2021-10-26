@@ -19,12 +19,8 @@ jobs:
           cd ..
       - name: debug
         run: |
-          echo 'current dir'
-          ls
-          echo './TiddlyWiki'
-          ls ./TiddlyWiki
-          echo './TiddlyWiki/build/cooked/2.9.2'
-          ls ./TiddlyWiki/build/cooked/2.9.2
+          echo 'github.event'
+          echo ${{ github.event }}
       - name: move and commit resulting file
         # get the "build/cooked/2.9.2" path bit from core repo itself
         # mv ./TiddlyWiki/build/cooked/2.9.2/index.html ./
