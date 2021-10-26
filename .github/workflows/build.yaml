@@ -3,11 +3,11 @@ name: rebuild index.html from sources repo
 on:
   workflow_dispatch:
     inputs:
-      userName:
+      name:
         description: "Username for commit"
         required: true
         default: "YakovL"
-      userMail:
+      email:
         description: "User email for commit"
         required: true
 
